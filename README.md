@@ -87,6 +87,44 @@
         
         If a leader Broker goes down then replication Partition in other Broker will become Leader.
         
+   **Producer**
+   
+        Producer is a component which sends/writes data into kafka topic-partition. It's client/Publisher which writes 
+        data into a Topic.
+        
+        When a Producer/Publisher/Client connects to a Kafka and send's its data/message Kafka infrastructur
+        will know in which given data needs to be written and wite the data into specific leader topic partition.
+        
+        Idellay each producer will send the data with a **Key** associated with it. For the first
+        message Kafka will place the message in a Leader topic partition then subsequent
+        messages will be automatically will go the same topic partition by default. 
+        
+        Similarly when a data is written to a leader partition the it will be automatically
+        replicated to its relica partitin as well by the kafka.
+        
+        When there is no key is mention in a given Message then Kafka will use round robin
+        method to identify to which Topic partition that data needs to be sent.
+        
+        When Producer/Publisher writes any message to Kafka it will receive acknowledgement.
+        based on Producer/Publisher prefernce.
+        
+        There are 3 modes of acknowledgements possible in kafka. A procuder can choose any
+        one of them while sending data to Kafka.
+        
+         - acks=0 Producer won't wait for acknowledgement in this mode. So there is a 
+                  possibility of a data loss.
+             
+         - acks=1 Producer will wait for acknowledgement from Leader Topic partition.
+                  In this mode partial data loss is possible in case a Broker fails and replica
+                  didn't get the written data.
+                  
+         - acks=2 Producer will wait for acknowledgement from both Leader and all replicas.
+                  In this case no data loss is possible.
+                  
+        
+         
+         
+        
         
         
         
