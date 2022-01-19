@@ -19,7 +19,7 @@
    - Create a decoupled systems by reducing system dependecies.
    - Integrate with various technologies like Spark, Flink, Hadoop and other Big Data technologies.
    
- # Real World Use Cases
+# Real World Use Cases
  
    - **LinkedIn** uses Kafka to prevent spam, collect user interactions. Kafka was invented by  **LinkedIn** and its opensourced.
    - <b>Netflix</b> uses kafka to apply recommendations in real-time while users watching its shows.
@@ -46,4 +46,6 @@
         Visibility of the Offset is specific to given partition only.
       - Any message written in a partition is immutable in nature. Once written it can't be modified.
       - Data is writted/assigned to any partition in a topic unless a Key is provided.
+      
+   **Broker**
         
