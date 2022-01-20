@@ -121,7 +121,58 @@
          - acks=2 Producer will wait for acknowledgement from both Leader and all replicas.
                   In this case no data loss is possible.
                   
-        
+  **Consumer**
+  
+     Consumer is process/application which connects to a Kafka topic and read data from a specicific
+     topic.
+     
+     Any consuming application upon connecting to Kafka will know which broker topic to be read.
+     
+     In case of Broker failure Consumers will know how to recover using Consumer Offset values.
+     
+     Any Consumer will data in any given topic in Offset order only. Which mean in which
+     order those messages are published in the same order only a Consumer can be able to read.
+     
+     A same Consumer can able to read multiple Partition data at the same time. 
+     
+     Consumers are grouped together based on the data/partition in which its reading data
+     and a Consumer Group can be formed.
+     
+     If we have too many Consumers in a group which read data from a specific topic then
+     few of the Consumers will be inactive.
+     
+     Consumers (in a ConsumerGroup) <= Total Number of Topic-Partition.
+     
+  **Consumer OffSet**
+  
+     Kafka will trake each Consumer Group's Consumers in which OffSet data they are reading. This information
+     is stored or commited live in a Kafka Topic name __consumer__offsets.Using this reference Consumers can
+     able to recover its reading operation in case of any Broker failure while reading data from a Topic.
+     
+     Commiting data into this consumer_offset is taken care by Kafka based on some configuration
+     called Delivery Semantics.
+     
+     Thera are 3 types of Delivery Semantics Configuration is possible.
+     
+       - Atmost Once --> Offsets are committed as soon as message is received by Consumer.
+                         In this case in case during message processing if any error then that
+                         message will be lost.
+                         
+       - Atleast Once --> Offsets are committed once message is processed successfully.
+                          In case any error during processing Consumer can read the message again
+                          and reprocess.
+                          Downside of this approach is there is a possibility of duplicate message
+                          processing.
+                          
+       - Exactly Once --> This can be achieved for Kafka -> Kafka workflows.
+     
+     
+     
+     
+     
+     
+     
+     
          
          
         
