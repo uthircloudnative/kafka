@@ -165,6 +165,37 @@
                           processing.
                           
        - Exactly Once --> This can be achieved for Kafka -> Kafka workflows.
+       
+  **Broker Discovery**
+  
+    In a Kafka Cluser each and every Kafka Broker will have information about each and every broker and its
+    Topics and its associated partition information. Any Broker in a Kafka Cluster will have this information
+    of other Brokers data as meta-data.
+    
+    With this meta-data any Kafka Client/Consumer app by connecting to a one Broker can able to get the
+    information about all other Brokers in the Cluster using this meta-data. This process is referred as
+    Broker Discovery.
+    
+    Due to this reason any Kafka Broker is called a bootstrap server.
+    
+ **Zookeeper**
+ 
+    Zookeeper manages all the Brokers in a Cluster. It will holds all the meta-data like information of 
+    the Broker and its aprtitions.
+    
+    It will send notifications to Kafka infra whenever a Broker is provisined and Topic or Partition
+    created,deleted or updated etc.
+    
+    Zookeeper is also distributed in nature as it has a Leader and one are more followers.
+    Leader will take responsiblity of all Write kind of operations whereas followers
+    will take care of Read operation of its associated Brokers and its topics.
+    
+    To run Kafka we must run ZooKeeper as well without it Kafka won't start.
+
+In a Kafka Cluster when we have replication factor of N (4 Brokers), Producer and Consumers can
+tolerate N-1 broker(max of 3 Brokers) being down for any reason. This ensuers high availability.
+    
+    
      
      
      
