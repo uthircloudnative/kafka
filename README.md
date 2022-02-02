@@ -2,6 +2,8 @@
 
 # What is Kafka
 
+Kafka is a **distibuted** **fault tolerent** highly efficient message/data/event processing platform.
+
 # Why Kafka
 
   - Its supports/provides distributed , resilient and fault tolerent data exchange platform.
@@ -194,7 +196,57 @@
 
 In a Kafka Cluster when we have replication factor of N (4 Brokers), Producer and Consumers can
 tolerate N-1 broker(max of 3 Brokers) being down for any reason. This ensuers high availability.
+
+# Kafka Local Setup and Running locally.
+
+To down load latest version of Kafka follow this link.
+
+https://kafka.apache.org/downloads
+
+To start Kafka locally make sure your executing following commands from Kafka bin folder or
+providing bin folder directory before the actual commad.
+
+**Before installing Kafka your local system must have Java installed**
+
+
+ - Start Zookeeper first. 
+ ```
+    bin/zookeeper-server-start.sh config/zookeeper.properties
     
+ ```
+    
+ - If Zookeeper started successfully then start Kafka Server/Broker in a sepearate window.
+ 
+ ```
+    bin/kafka-server-start config/server.properties
+    
+ ```
+ - Create a topic named user-reg-events
+
+```
+    bin/kafka-topics.sh --create --topic user-reg-events --bootstrap-server localhost:9092
+    
+```
+
+- To display properties of the created topic. 
+
+```
+   bin/kafka-topics.sh --describe --topic user-reg-events --bootstrap-server localhost:9092
+   
+   Following info will get printed. By default Kafka created a topic with 1 partition and 1 replica as we are running on this command on
+   single broker so far.
+   
+   Topic: user-reg-events	TopicId: ui1BhWvsSkGMRFr0mYekqg	PartitionCount: 1	ReplicationFactor: 1	Configs: segment.bytes=1073741824
+	 Topic: user-reg-events	Partition: 0	Leader: 0	Replicas: 0	Isr: 0
+   
+```
+
+ - To list all the topics in a broker.
+
+```
+  bin/kafka-topics.sh --list --topic user-reg-events --bootstrap-server localhost:9092
+  
+```
     
      
      
