@@ -1,21 +1,13 @@
-# Getting Started
+# Kafka Producer-Consumer Polling exaple
 
-### Reference Documentation
-For further reference, please consider the following sections:
+This code sample contains example configuration for Kafka Producer and Consumer.It has implementation of following use cases.
 
-* [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
-* [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.6.6/maven-plugin/reference/html/)
-* [Create an OCI image](https://docs.spring.io/spring-boot/docs/2.6.6/maven-plugin/reference/html/#build-image)
-* [Spring Web](https://docs.spring.io/spring-boot/docs/2.6.6/reference/htmlsingle/#boot-features-developing-web-applications)
-* [Spring Boot Actuator](https://docs.spring.io/spring-boot/docs/2.6.6/reference/htmlsingle/#production-ready)
-* [Spring Boot DevTools](https://docs.spring.io/spring-boot/docs/2.6.6/reference/htmlsingle/#using-boot-devtools)
-* [Spring for Apache Kafka](https://docs.spring.io/spring-boot/docs/2.6.6/reference/htmlsingle/#boot-features-kafka)
+  - A Producer which is exposed via a REST GET endpoint.
+  - When GET endpoint is called controller will created 100 User events and call Producer.
+  - Producer will publish those 100 User events to configured kafka topic.
+  
+  - A Consumer is configured with polling intervel of 2 mins with max Event consumption count of 50.
+  - This consumer will poll evet 2 min intervel and fetch 50 events each time.
 
-### Guides
-The following guides illustrate how to use some features concretely:
 
-* [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
-* [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
-* [Building REST services with Spring](https://spring.io/guides/tutorials/bookmarks/)
-* [Building a RESTful Web Service with Spring Boot Actuator](https://spring.io/guides/gs/actuator-service/)
 
